@@ -1,0 +1,19 @@
+<title>Liste Personnel - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>Liste du personnel</h1>
+    {% if personnes %}
+        <ul>
+            {% for personne in personnes %}
+                <li>
+                    <a href = "{% url 'personne-detail' personne.id %}">
+                    {{ personne.id }} - {{personne.nom}} </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Il n\'y a pas de personnel.</p>
+    {% endif %}
+{% endblock %}
