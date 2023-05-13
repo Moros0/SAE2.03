@@ -4,11 +4,11 @@
 
 {% block content %}
     <h1>Liste du personnel</h1>
-    {% if personne %}
+    {% if personnel %}
         <ul>
-            {% for personne in personne %}
+            {% for personnel in personnel %}
                 <li>
-                    {{ personne.id }} - {{personne.nom}} </a>
+                    {{ personnel.id }} - {{personnel.nom}} - {{personnel.prenom}} </a>
                 </li>
             {% endfor %}
         </ul>
