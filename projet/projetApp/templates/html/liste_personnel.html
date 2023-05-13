@@ -4,16 +4,15 @@
 
 {% block content %}
     <h1>Liste du personnel</h1>
-    {% if personnes %}
+    {% if personne %}
         <ul>
-            {% for personne in personnes %}
+            {% for personne in personne %}
                 <li>
-                    <a href = "{% url 'personne-detail' personne.id %}">
                     {{ personne.id }} - {{personne.nom}} </a>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>Il n\'y a pas de personnel.</p>
+        <p>Il n'y a pas de personnel.</p>
     {% endif %}
 {% endblock %}
