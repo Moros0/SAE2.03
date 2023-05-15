@@ -1,0 +1,13 @@
+<title>Votre compte - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h1>Informations du compte</h1>
+
+    <p>Nom d'utilisateur : {{ user.username }}</p>
+    <p>Email : {{ user.email }}</p>
+    <p>Groupe : {{ user.group }}</p>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from projetApp.models import Machine , Personnel
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import LoginForm
 
@@ -30,3 +31,8 @@ def login_view(request):
         else:
             messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
     return render(request, 'templates/html/login.html', {'form': LoginForm()})
+
+@login_required
+def compte_view(request):
+    user = request.user
+    return render(request, 'templates/html/compte.html', {'user': user})
