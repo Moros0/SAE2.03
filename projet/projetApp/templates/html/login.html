@@ -1,0 +1,15 @@
+<title>Login - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h1>Page de connexion</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <button type="submit">Se connecter</button>
+    </form>
+
+{% endblock %}
