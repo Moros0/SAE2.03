@@ -5,13 +5,24 @@
 {% block content %}
     <h1>Liste du personnel</h1>
     {% if personnel %}
-        <ul>
+    <table class="table">
+        <thead>                  
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for personnel in personnel %}
-                <li>
-                    {{ personnel.id }} - {{personnel.nom}} - {{personnel.prenom}} </a>
-                </li>
+            <tr>
+                <td>{{ personnel.nom }}</td>
+                <td>{{ personnel.prenom }}</td>
+                <td>{{ personnel.id }}</td>
+            </tr>
             {% endfor %}
-        </ul>
+        </tbody>
+    </table>
     {% else %}
         <p>Il n'y a pas de personnel.</p>
     {% endif %}

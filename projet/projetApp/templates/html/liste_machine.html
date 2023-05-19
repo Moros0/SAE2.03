@@ -5,13 +5,28 @@
 {% block content %}
     <h1>Liste des machines</h1>
     {% if machine %}
-        <ul>
+        <table class="table">
+            <thead>                  
+                <tr>
+                    <th>ID de la machine</th>
+                    <th>Nom de la machine</th>
+                    <th>Date de la maintenance</th>
+                    <th>Type de la machine</th>
+                </tr>
+            </thead>
+                <tbody>
             {% for machine in machine %}
-                <li>
-                    {{ machine.id }} - {{machine.nom}} </a>
-                </li>
+
+                  <tr>
+                    <td>{{ machine.id }}</td>
+                    <td>{{ machine.nom }}</td>
+                    <td>{{ machine.maintenance_date }}</td>
+                    <td>{{ machine.mach }}</td>
+                  </tr>
+
             {% endfor %}
-        </ul>
+                </tbody>
+              </table>
     {% else %}
         <p>Il n'y a pas de machine.</p>
     {% endif %}
