@@ -40,7 +40,12 @@ table th:last-child, table td:last-child {
     border-radius: 4px;
 }
 
-.button:hover {
+.button_compte:hover {
     background-color: #0d80eb; 
 }
 
+.button_detail{
+    border-radius: 4px;
+    color: blue;
+    padding: 2px 20px;
+}

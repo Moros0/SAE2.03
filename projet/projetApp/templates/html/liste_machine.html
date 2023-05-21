@@ -12,6 +12,7 @@
                     <th>Nom de la machine</th>
                     <th>Date de la maintenance</th>
                     <th>Type de la machine</th>
+                    <th>Détails</th>
                 </tr>
             </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                     <td>{{ machine.nom }}</td>
                     <td>{{ machine.maintenance_date }}</td>
                     <td>{{ machine.mach }}</td>
+                    <td><a href="{% url 'machine_detail' machine.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
                   </tr>
 
             {% endfor %}

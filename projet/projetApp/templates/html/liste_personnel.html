@@ -11,14 +11,16 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>ID</th>
+                <th>Détails</th>
             </tr>
         </thead>
         <tbody>
             {% for personnel in personnel %}
             <tr>
-                <td>{{ personnel.nom }}</td>
+                <td></a>{{ personnel.nom }}</td>
                 <td>{{ personnel.prenom }}</td>
                 <td>{{ personnel.id }}</td>
+                <td><a href="{% url 'personnel_detail' personnel.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
             </tr>
             {% endfor %}
         </tbody>

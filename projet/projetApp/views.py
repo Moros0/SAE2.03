@@ -1,24 +1,27 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from projetApp.models import Machine , Personnel
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import LoginForm, MachineForm, PersonnelForm
+from .forms import LoginForm, MachineForm, PersonnelForm, AjoutMachineForm
 
 # Create your views here.
 
 def index(request):
     return render(request, 'templates/index.html')
 
+
 def liste_machine_view(request):
     machine = Machine.objects.all()
     context = {'machine' : machine}
     return render(request , 'templates/html/liste_machine.html' , context)
 
+
 def liste_personnel_view(request):
     personnel = Personnel.objects.all()
     context = {'personnel' : personnel}
     return render(request , 'templates/html/liste_personnel.html' , context)
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -32,29 +35,31 @@ def login_view(request):
             messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
     return render(request, 'templates/html/login.html', {'form': LoginForm()})
 
+
 @login_required
 def compte_view(request):
     user = request.user
     return render(request, 'templates/html/compte.html', {'user': user})
 
-def create_machine_view(request):
-    if request.method == 'POST':
-        form = MachineForm(request.POST)
-        if form.is_valid():
-            machine = form.save()   # Enregistre le modèle dans la base de données
-            return redirect('machine_detail', pk=machine.pk)   # Redirige vers la nouvelle page
-    else:
-        form = MachineForm()
-    
-    return render(request, 'create_machine.html', {'form': form})
 
-def create_personnel_view(request):
+def machine_detail_view(request, pk):
+    machine = get_object_or_404(Machine, id = pk)
+    return render(request, 'templates/html/machine_detail.html', {'machine': machine})
+
+
+def personnel_detail_view(request, pk):
+    personnel = get_object_or_404(Personnel, id = pk)
+    return render(request, 'templates/html/personnel_detail.html', {'personnel': personnel})
+
+
+def ajout_machine_view(request):
     if request.method == 'POST':
-        form = PersonnelForm(request.POST)
+        form = AjoutMachineForm(request.POST)
         if form.is_valid():
-            personnel = form.save()   # Enregistre le modèle dans la base de données
-            return redirect('Personnel_detail', pk=personnel.pk)   # Redirige vers la nouvelle page
+            new_machine = Machine(nom=form.cleaned_data["nom"])
+            new_machine.save()
+            return redirect('machine')
     else:
-        form = PersonnelForm()
+        form = AjoutMachineForm()
     
-    return render(request, 'create_Personnel.html', {'form': form})
+    return render(request, 'ajout_machine.html', {'form': form})
