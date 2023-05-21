@@ -1,3 +1,5 @@
+/* CSS page index */
+
 .img-fluid{
     max-width: 15%; 
     height: auto;
@@ -44,8 +46,41 @@ table th:last-child, table td:last-child {
     background-color: #0d80eb; 
 }
 
+.nav-link:hover{
+    text-decoration: underline;
+    text-decoration-color: #0d80eb;
+}
+
+/* FIN */
+
+
 .button_detail{
     border-radius: 4px;
     color: blue;
     padding: 2px 20px;
 }
+
+
+/* CSS boutton en bas de la page détail de machine et personnel */
+
+.button_modif{
+    background-color: rgb(78, 78, 255);
+    border: none;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.button_sup{
+    background-color: #fc5a5a;
+    border: none;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.li_button{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+/* FIN  */
