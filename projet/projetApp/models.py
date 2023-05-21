@@ -20,8 +20,6 @@ class Machine(models.Model):
 	nom = models.CharField(
 		max_length = 15)
 
-	
-
 	maintenance_date = models.DateField(default = datetime.now())
 
 	mach = models.CharField(max_length = 32, choices = TYPE, default = 'PC')

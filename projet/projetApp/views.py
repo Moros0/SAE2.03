@@ -3,7 +3,7 @@ from projetApp.models import Machine , Personnel
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import LoginForm, MachineForm, PersonnelForm, AjoutMachineForm
+from .forms import LoginForm, MachineForm, PersonnelForm
 
 # Create your views here.
 
@@ -13,14 +13,12 @@ def index(request):
 
 def liste_machine_view(request):
     machine = Machine.objects.all()
-    context = {'machine' : machine}
-    return render(request , 'templates/html/liste_machine.html' , context)
+    return render(request , 'templates/html/liste_machine.html' , {'machine' : machine})
 
 
 def liste_personnel_view(request):
     personnel = Personnel.objects.all()
-    context = {'personnel' : personnel}
-    return render(request , 'templates/html/liste_personnel.html' , context)
+    return render(request , 'templates/html/liste_personnel.html' , {'personnel' : personnel})
 
 
 def login_view(request):
@@ -54,12 +52,48 @@ def personnel_detail_view(request, pk):
 
 def ajout_machine_view(request):
     if request.method == 'POST':
-        form = AjoutMachineForm(request.POST)
+        form = MachineForm(request.POST)
         if form.is_valid():
-            new_machine = Machine(nom=form.cleaned_data["nom"])
-            new_machine.save()
+            form.save()
             return redirect('machine')
     else:
-        form = AjoutMachineForm()
+        form = MachineForm()
     
-    return render(request, 'ajout_machine.html', {'form': form})
+    return render(request, 'templates/html/ajout_machine.html', {'form': form}) 
+
+def ajout_personnel_view(request):
+    if request.method == 'POST':
+        form = PersonnelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('personnel')
+    else:
+        form = PersonnelForm()
+    
+    return render(request, 'templates/html/ajout_personnel.html', {'form': form}) 
+
+def modifier_machine_view(request, pk):
+    instance = get_object_or_404(Machine, pk=pk)
+    
+    if request.method == 'POST':
+        form = MachineForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('machine')
+    else:
+        form = MachineForm(instance=instance)
+    
+    return render(request, 'templates/html/modifier_machine.html', {'form': form})
+
+def modifier_personnel_view(request, pk):
+    instance = get_object_or_404(Personnel, pk=pk)
+    
+    if request.method == 'POST':
+        form = PersonnelForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('personnel')
+    else:
+        form = PersonnelForm(instance=instance)
+    
+    return render(request, 'templates/html/modifier_personnel.html', {'form': form})
