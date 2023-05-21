@@ -10,7 +10,7 @@
     <p><strong>Id</strong> : {{ personnel.id }}</p>
 
     <div class="li_button">
-        <a href="{% url 'modifier_personnel' personnel.id %}"><button class="button_modif">Modifier le Personel</button></a>
-        <a href=""><button class="button_sup">Supprimer le Personel</button></a>
+        <a href="{% url 'modifier_personnel' personnel.id %}"><button class="button_modif">Modifier du Personel</button></a>
+        <a href="{% url 'supprimer_personnel' personnel.id %}"><button class="button_sup">Supprimer du Personel</button></a>
     </div>
 {% endblock %}

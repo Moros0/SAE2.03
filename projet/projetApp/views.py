@@ -106,3 +106,11 @@ def supprimer_machine_view(request, pk):
         instance.delete()
         return redirect('machine')
     return render(request, 'templates/html/supprimer_machine.html', {'instance': instance})
+
+def supprimer_personnel_view(request, pk):
+    instance = get_object_or_404(Personnel, pk=pk)
+    
+    if request.method == 'POST':
+        instance.delete()
+        return redirect('personnel')
+    return render(request, 'templates/html/supprimer_personnel.html', {'instance': instance})

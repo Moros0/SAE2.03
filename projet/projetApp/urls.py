@@ -14,5 +14,6 @@ urlpatterns = [
     path('modifier_machine/<pk>', views.modifier_machine_view, name='modifier_machine'),
     path('modifier_personnel/<pk>', views.modifier_personnel_view, name='modifier_personnel'),
     path('supprimer_machine/<pk>', views.supprimer_machine_view, name='supprimer_machine'),
+    path('supprimer_personnel/<pk>', views.supprimer_personnel_view, name='supprimer_personnel'),
 
 ]
