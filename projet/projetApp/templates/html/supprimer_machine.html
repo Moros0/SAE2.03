@@ -1,0 +1,16 @@
+<title>Supprimer machine - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+<p>Voulez-vous vraiment supprimer {{ machine.nom }} ?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+</form>
+
+{% endblock %}
+
+
+

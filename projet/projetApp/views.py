@@ -97,3 +97,12 @@ def modifier_personnel_view(request, pk):
         form = PersonnelForm(instance=instance)
     
     return render(request, 'templates/html/modifier_personnel.html', {'form': form})
+
+
+def supprimer_machine_view(request, pk):
+    instance = get_object_or_404(Machine, pk=pk)
+    
+    if request.method == 'POST':
+        instance.delete()
+        return redirect('machine')
+    return render(request, 'templates/html/supprimer_machine.html', {'instance': instance})
