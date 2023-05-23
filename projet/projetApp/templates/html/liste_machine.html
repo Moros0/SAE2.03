@@ -5,6 +5,7 @@
 {% block content %}
     <h1>Liste des machines</h1>
     {% if machine %}
+    <div class="tableau">
         <table class="table">
             <thead>                  
                 <tr>
@@ -15,21 +16,27 @@
                     <th>Détails</th>
                 </tr>
             </thead>
-                <tbody>
+            <tbody>
             {% for machine in machine %}
 
-                  <tr>
+                <tr>
                     <td>{{ machine.id }}</td>
                     <td>{{ machine.nom }}</td>
                     <td>{{ machine.maintenance_date }}</td>
                     <td>{{ machine.mach }}</td>
                     <td><a href="{% url 'machine_detail' machine.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
-                  </tr>
+                </tr>
 
             {% endfor %}
-                </tbody>
-              </table>
+            </tbody>
+        </table>
+    </div>
     {% else %}
         <p>Il n'y a pas de machine.</p>
     {% endif %}
+
+    <div class="li_button">
+        <a href="{% url 'ajout_machine'%}"><button class="button_ajout">Ajouter une machine</button></a>
+    </div>
+
 {% endblock %}

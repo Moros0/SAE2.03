@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> <!-- ajout bootstrap css-->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/bootstrap.min.js' %}"></script> <!-- ajout bootstrap js-->
-</head>
-<header>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/rtfavicon.png' %}" />
 
+
+  {% block menu %}
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'index' %}">IT Management</a>
@@ -42,23 +43,22 @@
             <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Rechercher</button>
-        </form>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+          </form>
           <a href="{% url 'compte' %}"><button class="button_compte">Votre compte</button></a>
 
       </div>
     </div>
   </nav>
+  {% endblock %}
 
-</header>
+</head>
 
 <body>
   {% block content %}
     <a href="{% url 'login' %}">Se connecter</a>
-    <a href="{% url 'ajout_machine' %}">Ajouter une machine</a>
-    <a href="{% url 'ajout_personnel' %}">Ajouter du personnel</a>
   {% endblock %}
 </body>
 
