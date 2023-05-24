@@ -7,59 +7,62 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/bootstrap.min.js' %}"></script> <!-- ajout bootstrap js-->
     <link rel="icon" type="image/x-icon" href="{% static 'images/rtfavicon.png' %}" />
-
-
-  {% block menu %}
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'index' %}">IT Management</a>
-      <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/rtdev.png' %}" class="img-fluid" alt="Logo rtdev"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">Acceuil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'machine' %}">Machines</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'personnel' %}">Personnel</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Ajouter
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
-          </form>
-          <a href="{% url 'compte' %}"><button class="button_compte">Votre compte</button></a>
-
-      </div>
-    </div>
-  </nav>
-  {% endblock %}
-
 </head>
 
 <body>
+  <header>
+    {% block menu %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">IT Management</a>
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/rtdev.png' %}" class="img-fluid" alt="Logo rtdev"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Acceuil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'machine' %}">Machines</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'personnel' %}">Personnel</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ajouter
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Entrez votre recherche" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+            <a href="{% url 'compte' %}"><button class="button_compte">Votre compte</button></a>
+
+        </div>
+      </div>
+    </nav>
+    {% endblock %}
+
+  </header>
+
+  <main>
   {% block content %}
     <a href="{% url 'login' %}">Se connecter</a>
   {% endblock %}
+  </main>
 </body>
 
 </html>

@@ -38,7 +38,10 @@ def login_view(request):
 @login_required
 def compte_view(request):
     user = request.user
-    return render(request, 'templates/html/compte.html', {'user': user})
+    if request.user.is_authenticated:
+        return render(request, 'templates/html/compte.html', {'user': user})
+    else:
+        return render(request, 'templates/html/login.html', {'form': LoginForm()})
 
 
 def machine_detail_view(request, pk):

@@ -4,11 +4,22 @@
 
 {% block content %}
 
-<p>Voulez-vous vraiment supprimer {{ machine.nom }} ?</p>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Oui, supprimer</button>
-</form>
+    {% if request.user.is_superuser %}
+
+    <p>Voulez-vous vraiment supprimer {{ machine.nom }} ?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Oui, supprimer</button>
+    </form>
+
+    {% else %}
+
+    <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>
+    {% load static %}
+    <a href="{% url 'machine' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
+        <p>Retour sur le site.</p></a>
+
+    {% endif %}
 
 {% endblock %}
 
