@@ -6,15 +6,14 @@
 
     {% if request.user.is_superuser %}
 
-    <p>Voulez-vous vraiment supprimer {{ machine.nom }} ?</p>
+    <p>Voulez-vous vraiment supprimer la machine ?</p>
     <form method="POST">
         {% csrf_token %}
         <button type="submit">Oui, supprimer</button>
     </form>
 
-    {% load static %}
-    <a href="{% url 'machine' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px"></a>
-    <a href="{% url 'machine' %}"><p>Retour sur le site.</p></a>
+    <a href="{% url 'machine' %}"><button>Non, retour</button></a>
+
     <style>
         main{
             display: flex;
