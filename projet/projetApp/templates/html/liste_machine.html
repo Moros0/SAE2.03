@@ -3,6 +3,13 @@
 {% extends "index.html" %}
 
 {% block content %}
+
+    <style>
+        tr td img{
+            margin-right:5px;
+        }
+    </style>
+
     <h1>Liste des machines</h1>
     {% if machine %}
     <div class="tableau">
@@ -10,6 +17,7 @@
             <thead>                  
                 <tr>
                     <th>ID de la machine</th>
+                    <th>Etat de la machine</th>
                     <th>Nom de la machine</th>
                     <th>Date de la maintenance</th>
                     <th>Type de la machine</th>
@@ -21,6 +29,14 @@
 
                 <tr>
                     <td>{{ machine.id }}</td>
+                    {% if machine.etat == 'Online' %}
+                        {% load static %}
+                        <td><img src="{% static 'images/bouton_vert.png' %}" width="15px" height="15px">
+                            {{ machine.etat }}</td>
+                    {% else %}
+                        <td><img src="{% static 'images/bouton_rouge.png' %}" width="15px" height="15px">
+                            {{ machine.etat }}</td>
+                    {% endif %}
                     <td>{{ machine.nom }}</td>
                     <td>{{ machine.maintenance_date }}</td>
                     <td>{{ machine.mach }}</td>

@@ -12,6 +12,18 @@
         <button type="submit">Modifier</button>
     </form>
 
+    {% load static %}
+    <a href="{% url 'machine' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px"></a>
+    <a href="{% url 'machine' %}"><p>Retour sur le site.</p></a>
+    <style>
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
     {% else %}
 
     <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>

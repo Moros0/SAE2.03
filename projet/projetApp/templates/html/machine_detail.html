@@ -4,11 +4,30 @@
 
 {% block content %}
 
+    <style>
+        tr td img{
+            margin:5px;
+        }
+    </style>
+
     <h1>Nom : {{ machine.nom }}</h1>
     <p><strong>Id</strong> : {{ machine.id }}</p>
+    <p><strong>Etat</strong> :
+    {% if machine.etat == 'Online' %}
+    {% load static %}
+    <td><img src="{% static 'images/bouton_vert.png' %}" width="15px" height="15px">
+        {{ machine.etat }}</td>
+    {% else %}
+    <td><img src="{% static 'images/bouton_rouge.png' %}" width="15px" height="15px">
+        {{ machine.etat }}</td>
+    {% endif %}
+    </p>
     <p><strong>Nom</strong> : {{ machine.nom }}</p>
     <p><strong>Date de maintenace</strong> : {{ machine.maintenance_date }}</p>
-    <p><strong>Type de machine</strong> : {{ machine.mach }}</p>
+    <p><strong>Type</strong> : {{ machine.mach }}</p>
+    <p><strong>Nom de l'utilisateur associé</strong> : {{ machine.mach }}
+    </p>
+
 
     <div class="li_button">
         <a href="{% url 'modifier_machine' machine.id %}"><button class="button_modif">Modifier la machine</button></a>

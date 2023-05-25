@@ -29,7 +29,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')    # Redirige vers la page d'accueil après la connexion
+            return redirect('index')
         else:
             messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
     return render(request, 'templates/html/login.html', {'form': LoginForm()})

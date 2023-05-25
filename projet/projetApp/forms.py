@@ -8,7 +8,7 @@ class LoginForm(forms.Form):
 class MachineForm(forms.ModelForm):
     class Meta:
         model = Machine
-        fields = ['nom', 'maintenance_date', 'mach']
+        fields = ['etat', 'nom', 'maintenance_date', 'mach']
 
 class PersonnelForm(forms.ModelForm):
     class Meta:

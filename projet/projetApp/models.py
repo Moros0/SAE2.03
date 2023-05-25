@@ -14,9 +14,15 @@ class Machine(models.Model):
 		('Switch', ('Switch')),	
 	}
 
+	ETAT = {
+		('Online', ('Online')),
+		('Offline', ('Offline')),
+	}
+
 	id = models.AutoField(
 			primary_key =  True,
-			editable = False)
+			editable = False,
+			unique = True)
 
 	nom = models.CharField(
 		max_length = 15)
@@ -24,6 +30,8 @@ class Machine(models.Model):
 	maintenance_date = models.DateField(default = datetime.now())
 
 	mach = models.CharField(max_length = 32, choices = TYPE, default = 'PC')
+
+	etat = models.CharField(max_length = 32, choices = ETAT, default = 'Offline')
 
 	def __str__(self):
 		return str(self.id) + " -> " + self.nom
