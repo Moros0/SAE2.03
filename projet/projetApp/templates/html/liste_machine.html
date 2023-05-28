@@ -19,6 +19,7 @@
                     <th>ID de la machine</th>
                     <th>Etat de la machine</th>
                     <th>Nom de la machine</th>
+                    <th>Personnel associé</th>
                     <th>Adresse de la machine</th>
                     <th>Masque de la machine</th>
                     <th>Date de la maintenance</th>
@@ -40,6 +41,7 @@
                             {{ machine.etat }}</td>
                     {% endif %}
                     <td>{{ machine.nom }}</td>
+                    <td>{{ machine.personnel_assoc }}</td>
                     <td>{{ machine.adresse_ip }}</td>
                     <td>{{ machine.masque }}</td>
                     <td>{{ machine.maintenance_date }}</td>
