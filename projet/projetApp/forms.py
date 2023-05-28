@@ -18,4 +18,4 @@ class PersonnelForm(forms.ModelForm):
 class ReseauForm(forms.ModelForm):
     class Meta:
         model = Reseau
-        fields = ['nom', 'adresse_ip', 'masque']
+        fields = ['nom', 'adresse_ip', 'masque','machine_assoc']

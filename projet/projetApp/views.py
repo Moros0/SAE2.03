@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from projetApp.models import Machine , Personnel, Reseau
+from .models import Machine , Personnel, Reseau
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import LoginForm, MachineForm, PersonnelForm, ReseauForm
-from django.contrib.auth.models import User
 
 # Create your views here.
 

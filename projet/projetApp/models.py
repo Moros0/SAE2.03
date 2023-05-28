@@ -18,8 +18,12 @@ class Reseau(models.Model):
 
 	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
 
+	machine_assoc = models.ForeignKey('self', on_delete=models.CASCADE)
+
 	def __str__(self):
 		return str(self.nom) + " -> " + self.adresse_ip
+
+
 
 class Machine(models.Model):
 
@@ -59,6 +63,8 @@ class Machine(models.Model):
 	def __str__(self):
 		return str(self.id) + " -> " + self.nom
 
+
+
 class Personnel(models.Model):
 	id = models.PositiveIntegerField(
 		primary_key = True,
@@ -75,7 +81,7 @@ class Personnel(models.Model):
 		max_length = 30
 	)
 
-	machine_assoc = models.ForeignKey(Machine, on_delete=models.CASCADE)
+	machine_assoc = models.OneToOneField(Machine, on_delete=models.CASCADE)
 
 	mail = models.EmailField(blank = True) # max_lenght = 46 car le fomat est 'nom@it.management.fr' donc 30 + 16
 
