@@ -18,8 +18,6 @@ class Reseau(models.Model):
 
 	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
 
-	machine_assoc = models.ForeignKey('self', on_delete=models.CASCADE)
-
 	def __str__(self):
 		return str(self.nom) + " -> " + self.adresse_ip
 
