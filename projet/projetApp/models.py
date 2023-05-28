@@ -27,7 +27,8 @@ class Machine(models.Model):
 		('PC', ('PC - Windows')),
 		('Mac', ('Mac - MacOS')),
 		('Serveur', ('Serveur')),
-		('Switch', ('Switch')),	
+		('Switch', ('Switch')),
+		('Routeur', ('Routeur')),
 	}
 
 	ETAT = {
