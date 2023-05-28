@@ -58,10 +58,6 @@ class Machine(models.Model):
 	def __str__(self):
 		return str(self.id) + " -> " + self.nom
 
-	def get_name(self):
-		return str(self.id) + " " + self.nom
-
-
 class Personnel(models.Model):
 	id = models.PositiveIntegerField(
 		primary_key = True,
@@ -78,7 +74,17 @@ class Personnel(models.Model):
 		max_length = 30
 	)
 
-	machine_id = models.ForeignKey(Machine, on_delete=models.CASCADE)
+	machine_assoc = models.ForeignKey(Machine, on_delete=models.CASCADE)
+
+	mail = models.EmailField(blank = True) # max_lenght = 46 car le fomat est 'nom@it.management.fr' donc 30 + 16
+
 
 	def __str__(self):
 		return str(self.id) + " -> " + self.nom
+	
+	def save(self, *args, **kwargs):
+		if not self.mail:
+			username = self.nom.lower().replace(" ", "") 	#permet d'enelever les espaces et de mettre les caractères en minuscules
+			domain = "it.management.fr"
+			self.mail = f"{username}@{domain}"		#créer l'adrese automatiquement grâce aux arg donnés
+		super().save(*args, **kwargs)

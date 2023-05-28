@@ -8,12 +8,12 @@ class LoginForm(forms.Form):
 class MachineForm(forms.ModelForm):
     class Meta:
         model = Machine
-        fields = ['etat', 'nom', 'adresse_ip', 'masque', 'maintenance_date', 'mach']
+        fields = ['etat', 'nom', 'adresse_ip', 'masque', 'reseau_assoc', 'maintenance_date', 'mach']
 
 class PersonnelForm(forms.ModelForm):
     class Meta:
         model = Personnel
-        fields = '__all__'
+        fields = ['nom','prenom','id','machine_assoc']
 
 class ReseauForm(forms.ModelForm):
     class Meta:
