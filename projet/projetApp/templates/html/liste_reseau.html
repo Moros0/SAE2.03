@@ -1,0 +1,49 @@
+<title>Liste Réseaux - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    <style>
+        tr td img{
+            margin-right:5px;
+        }
+    </style>
+
+    <h1>Liste des réseaux</h1>
+    {% if reseau %}
+    <div class="tableau">
+        <table class="table">
+            <thead>                  
+                <tr>
+                    <th>ID du réseau</th>
+                    <th>Nom du réseau</th>
+                    <th>Adresse du réseau</th>
+                    <th>Masque du réseau</th>
+                    <th>Détails</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for reseau in reseau %}
+
+                <tr>
+                    <td>{{ reseau.id }}</td>
+                    <td>{{ reseau.nom }}</td>
+                    <td>{{ reseau.adresse_ip }}</td>
+                    <td>{{ reseau.masque }}</td>
+                    <td><a href="{% url 'detail_reseau' reseau.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p>Il n'y a pas de réseaux.</p>
+    {% endif %}
+
+    <div class="li_button">
+        <a href="{% url 'ajout_reseau'%}"><button class="button_ajout">Ajouter un réseau</button></a>
+    </div>
+
+{% endblock %}

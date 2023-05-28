@@ -19,6 +19,8 @@
                     <th>ID de la machine</th>
                     <th>Etat de la machine</th>
                     <th>Nom de la machine</th>
+                    <th>Adresse de la machine</th>
+                    <th>Masque de la machine</th>
                     <th>Date de la maintenance</th>
                     <th>Type de la machine</th>
                     <th>Détails</th>
@@ -38,9 +40,11 @@
                             {{ machine.etat }}</td>
                     {% endif %}
                     <td>{{ machine.nom }}</td>
+                    <td>{{ machine.adresse_ip }}</td>
+                    <td>{{ machine.masque }}</td>
                     <td>{{ machine.maintenance_date }}</td>
                     <td>{{ machine.mach }}</td>
-                    <td><a href="{% url 'machine_detail' machine.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
+                    <td><a href="{% url 'detail_machine' machine.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
                 </tr>
 
             {% endfor %}

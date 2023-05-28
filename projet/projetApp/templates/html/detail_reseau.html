@@ -1,0 +1,23 @@
+<title>Detail du Réseau - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    <style>
+        tr td img{
+            margin:5px;
+        }
+    </style>
+
+    <h1>Nom : {{ reseau.nom }}</h1>
+    <p><strong>Id</strong> : {{ reseau.id }}</p>
+    <p><strong>Adresse</strong> : {{ reseau.adresse_ip }}</p>
+    <p><strong>Masque</strong> : {{ reseau.masque }}</p>
+
+
+    <div class="li_button">
+        <a href="{% url 'modifier_reseau' reseau.id %}"><button class="button_modif">Modifier le reseau</button></a>
+        <a href="{% url 'supprimer_reseau' reseau.id %}"><button class="button_sup">Supprimer le reseau</button></a>
+    </div>
+{% endblock %}

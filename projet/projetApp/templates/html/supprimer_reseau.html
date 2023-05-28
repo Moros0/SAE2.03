@@ -1,0 +1,38 @@
+<title>Supprimer Réseau - IT Management</title>
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    {% if request.user.is_superuser %}
+
+    <p>Voulez-vous vraiment supprimer le Réseau ?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Oui, supprimer</button>
+    </form>
+
+    <a href="{% url 'reseau' %}"><button>Non, retour</button></a>
+
+    <style>
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    {% else %}
+
+    <p>Vous devez être administrateur pour modifier ou supprimer les Réseaux.</p>
+    {% load static %}
+    <a href="{% url 'reseau' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
+        <p>Retour sur le site.</p></a>
+
+    {% endif %}
+
+{% endblock %}
+
+
+

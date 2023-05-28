@@ -1,5 +1,5 @@
 from django import forms
-from .models import Machine, Personnel
+from .models import Machine, Personnel, Reseau
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Nom d\'utilisateur')
@@ -8,9 +8,14 @@ class LoginForm(forms.Form):
 class MachineForm(forms.ModelForm):
     class Meta:
         model = Machine
-        fields = ['etat', 'nom', 'maintenance_date', 'mach']
+        fields = ['etat', 'nom', 'adresse_ip', 'masque', 'maintenance_date', 'mach']
 
 class PersonnelForm(forms.ModelForm):
     class Meta:
         model = Personnel
         fields = '__all__'
+
+class ReseauForm(forms.ModelForm):
+    class Meta:
+        model = Reseau
+        fields = ['nom', 'adresse_ip', 'masque']

@@ -1,7 +1,6 @@
 from django.db import models
-from django.core.validators import MaxValueValidator , MinValueValidator
-from datetime import datetime
-from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator , MinValueValidator, validate_ipv4_address
+from django.utils import timezone
 
 # Create your models here.
 
@@ -26,8 +25,12 @@ class Machine(models.Model):
 
 	nom = models.CharField(
 		max_length = 15)
+	
+	adresse_ip = models.CharField(max_length=15, validators=[validate_ipv4_address])
 
-	maintenance_date = models.DateField(default = datetime.now())
+	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
+
+	maintenance_date = models.DateTimeField(default=timezone.now)
 
 	mach = models.CharField(max_length = 32, choices = TYPE, default = 'PC')
 
@@ -55,3 +58,17 @@ class Personnel(models.Model):
 	prenom = models.CharField(
 		max_length = 30
 	)
+
+class Reseau(models.Model):
+
+	id = models.AutoField(
+		primary_key = True,
+		editable = False,
+		unique = True,
+	)
+
+	nom = models.CharField(max_length= 32, unique=True)
+
+	adresse_ip = models.CharField(max_length=15, validators=[validate_ipv4_address])
+
+	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
