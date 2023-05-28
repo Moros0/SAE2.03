@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator , MinValueValidator, validate_ipv4_address
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -51,6 +52,8 @@ class Machine(models.Model):
 	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
 
 	reseau_assoc = models.ForeignKey(Reseau, on_delete=models.CASCADE)
+
+	personnel_assoc = models.OneToOneField('Personnel', on_delete=models.CASCADE)
 
 	maintenance_date = models.DateTimeField(default=timezone.now)
 
