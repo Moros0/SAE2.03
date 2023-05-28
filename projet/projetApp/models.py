@@ -4,6 +4,23 @@ from django.utils import timezone
 
 # Create your models here.
 
+class Reseau(models.Model):
+
+	id = models.AutoField(
+		primary_key = True,
+		editable = False,
+		unique = True,
+	)
+
+	nom = models.CharField(max_length= 32, unique=True)
+
+	adresse_ip = models.CharField(max_length=15, validators=[validate_ipv4_address])
+
+	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
+
+	def __str__(self):
+		return str(self.nom) + " -> " + self.adresse_ip
+
 class Machine(models.Model):
 
 	TYPE = {
@@ -30,6 +47,7 @@ class Machine(models.Model):
 
 	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
 
+	reseau_assoc = models.ForeignKey(Reseau, on_delete=models.CASCADE)
 
 	maintenance_date = models.DateTimeField(default=timezone.now)
 
@@ -62,16 +80,5 @@ class Personnel(models.Model):
 
 	machine_id = models.ForeignKey(Machine, on_delete=models.CASCADE)
 
-class Reseau(models.Model):
-
-	id = models.AutoField(
-		primary_key = True,
-		editable = False,
-		unique = True,
-	)
-
-	nom = models.CharField(max_length= 32, unique=True)
-
-	adresse_ip = models.CharField(max_length=15, validators=[validate_ipv4_address])
-
-	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
+	def __str__(self):
+		return str(self.id) + " -> " + self.nom
