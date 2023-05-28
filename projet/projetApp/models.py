@@ -30,6 +30,7 @@ class Machine(models.Model):
 
 	masque = models.CharField(max_length= 15, validators=[validate_ipv4_address])
 
+
 	maintenance_date = models.DateTimeField(default=timezone.now)
 
 	mach = models.CharField(max_length = 32, choices = TYPE, default = 'PC')
@@ -58,6 +59,8 @@ class Personnel(models.Model):
 	prenom = models.CharField(
 		max_length = 30
 	)
+
+	machine_id = models.ForeignKey(Machine, on_delete=models.CASCADE)
 
 class Reseau(models.Model):
 
