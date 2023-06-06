@@ -20,5 +20,6 @@ urlpatterns = [
     path('supprimer_machine/<pk>', views.supprimer_machine_view, name='supprimer_machine'),
     path('supprimer_personnel/<pk>', views.supprimer_personnel_view, name='supprimer_personnel'),
     path('supprimer_reseau/<pk>', views.supprimer_reseau_view, name='supprimer_reseau'),
+    path('recherche/', views.recherche_view, name='recherche'),
 
 ]

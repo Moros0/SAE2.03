@@ -3,7 +3,8 @@ from .models import Machine , Personnel, Reseau
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import LoginForm, MachineForm, PersonnelForm, ReseauForm
+from .forms import LoginForm, MachineForm, PersonnelForm, ReseauForm, SearchForm
+from django.db.models import Q 
 
 # Create your views here.
 
@@ -154,3 +155,42 @@ def supprimer_reseau_view(request, pk):
         instance.delete()
         return redirect('reseau')
     return render(request, 'templates/html/supprimer_reseau.html', {'instance': instance})
+
+def recherche_view(request):
+    form = SearchForm(request.GET)
+    results = {}
+
+    if form.is_valid():
+        search_query = form.cleaned_data['search_query']
+
+        machine_results = Machine.objects.filter(
+            Q(id__icontains=search_query) |
+            Q(nom__icontains=search_query) |
+            Q(adresse_ip__icontains=search_query) |
+            Q(masque__icontains=search_query) |
+            Q(maintenance_date__icontains=search_query) |
+            Q(mach__icontains=search_query) |
+            Q(etat__icontains=search_query)
+        )
+        results['Machine'] = machine_results
+
+        personnel_results = Personnel.objects.filter(
+            Q(id__icontains=search_query) |
+            Q(nom__icontains=search_query) |
+            Q(prenom__icontains=search_query) |
+            Q(mail__icontains=search_query)
+        )
+        results['Personnel'] = personnel_results
+
+        reseau_results = Reseau.objects.filter(
+            Q(id__icontains=search_query) |
+            Q(nom__icontains=search_query) |
+            Q(adresse_ip__icontains=search_query) |
+            Q(masque__icontains=search_query)
+        )
+        results['Reseau'] = reseau_results
+
+
+
+
+    return render(request, 'templates/html/recherche.html', {'form': form, 'results': results})

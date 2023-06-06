@@ -19,3 +19,6 @@ class ReseauForm(forms.ModelForm):
     class Meta:
         model = Reseau
         fields = ['nom', 'adresse_ip', 'masque']
+
+class SearchForm(forms.Form):
+    search_query = forms.CharField(label='Recherche')

@@ -1,0 +1,53 @@
+<title>Résultats recherche - IT Management</title>
+
+{%extends "index.html" %}
+
+{% block content %}
+
+<h1>Page de Recherche</h1>
+
+<form method="get" action="{% url 'recherche' %}">
+    {{ form.as_p }}
+    <button type="submit">Rechercher</button>
+</form>
+
+<style>
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1,h2{
+        padding: 20px;
+    }
+</style>
+
+{% if results.Machine %}
+    <h2>Résultats pour Machine</h2>
+    <ul>
+        {% for machine_result in results.Machine %}
+            <li>{{ machine_result }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if results.Personnel %}
+    <h2>Résultats pour Personnel</h2>
+    <ul>
+        {% for personnel_result in results.Personnel %}
+            <li>{{ personnel_result }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if results.Reseau %}
+    <h2>Résultats pour Reseau</h2>
+    <ul>
+        {% for reseau_result in results.Reseau %}
+            <li>{{ reseau_result }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
