@@ -69,6 +69,14 @@ table tr:hover {
     text-align: center;
 }
 
+.connexion{
+    background-color: rgb(158, 250, 174);
+    border: none;
+    border-radius: 30px;
+    padding: 15px;
+    text-decoration: none;
+}
+
 /* FIN */
 
 

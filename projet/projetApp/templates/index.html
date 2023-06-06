@@ -61,7 +61,23 @@
 
   <main>
   {% block content %}
-    <a href="{% url 'login' %}">Se connecter</a>
+
+  <style>
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    p{
+      padding: 20px 0px;
+    }
+  </style>
+
+    <h1>Page d'Accueil</h1>
+    <p>Bienvenue ! Connectez-vous pour accéder à votre compte.</p>
+    <a href="{% url 'login' %}"><button class="connexion">Se connecter</button></a>
+
   {% endblock %}
   </main>
 </body>
