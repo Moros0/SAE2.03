@@ -3,34 +3,40 @@
 {% extends "index.html" %}
 
 {% block content %}
+    <div class="card text-center">
+        <div class="card-body">
+            {% if request.user.is_superuser %}
 
-    {% if request.user.is_superuser %}
+            <div class="alert alert-danger">
+                <strong>Attention !</strong> Vous êtes sur le point de supprimer du personnel.
+            </div>
 
-    <p>Voulez-vous vraiment supprimer ce personnel ?</p>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Oui, supprimer</button>
-    </form>
+            <p>Voulez-vous vraiment supprimer ce personnel ?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Oui, supprimer</button>
+            </form>
 
-    <a href="{% url 'personnel' %}"><button>Non, retour</button></a>
+            <a href="{% url 'personnel' %}"><button class="btn btn-primary">Non, retour</button></a>
 
-    <style>
-        main{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
+            <style>
+                main{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            </style>
 
-    {% else %}
+            {% else %}
 
-    <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>
-    {% load static %}
-    <a href="{% url 'personnel' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
-        <p>Retour sur le site.</p></a>
+            <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>
+            <a href="{% url 'personnel' %}"><button class="btn btn-primary">Retour sur le site</button></a>
 
-    {% endif %}
+            {% endif %}   
+        </div>
+    </div>
+
 
 {% endblock %}
 
