@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Machine , Personnel, Reseau
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import LoginForm, MachineForm, PersonnelForm, ReseauForm, SearchForm
@@ -32,7 +32,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('compte')
         else:
             messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
     return render(request, 'templates/html/login.html', {'form': LoginForm()})
@@ -62,7 +62,7 @@ def reseau_detail_view(request, pk):
 
 def ajout_machine_view(request):
     if request.method == 'POST':
-        form = MachineForm(request.POST)
+        form = MachineForm(request.POST)        #utilise le formulaire machine pour obtenir les infos nécessaire
         if form.is_valid():
             form.save()
             return redirect('machine')
@@ -156,41 +156,42 @@ def supprimer_reseau_view(request, pk):
         return redirect('reseau')
     return render(request, 'templates/html/supprimer_reseau.html', {'instance': instance})
 
-def recherche_view(request):
-    form = SearchForm(request.GET)
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+def recherche_view(request):        #fonction pour la recherche
+    form = SearchForm(request.GET)      #utilise le formulaire de recherche
     results = {}
 
     if form.is_valid():
-        search_query = form.cleaned_data['search_query']
+        search_query = form.cleaned_data['search_query']        
 
-        machine_results = Machine.objects.filter(
-            Q(id__icontains=search_query) |
-            Q(nom__icontains=search_query) |
-            Q(adresse_ip__icontains=search_query) |
+        machine_results = Machine.objects.filter(       #champs du modele machine
+            Q(id__icontains=search_query) |  #liste des différents champs dans lesquels sont cherchés l'objet de la recherche
+            Q(nom__icontains=search_query) |        #par exemple si je cherche 'Online' cette recherche va être éffectuée
+            Q(adresse_ip__icontains=search_query) |     #dans tout les champs indiqués ici, qui commencent avec un Q
             Q(masque__icontains=search_query) |
             Q(maintenance_date__icontains=search_query) |
             Q(mach__icontains=search_query) |
             Q(etat__icontains=search_query)
         )
-        results['Machine'] = machine_results
+        results['Machine'] = machine_results        #affiche les résultats pour les machines
 
-        personnel_results = Personnel.objects.filter(
+        personnel_results = Personnel.objects.filter(       #champs du modele personnel
             Q(id__icontains=search_query) |
             Q(nom__icontains=search_query) |
             Q(prenom__icontains=search_query) |
             Q(mail__icontains=search_query)
         )
-        results['Personnel'] = personnel_results
+        results['Personnel'] = personnel_results        #affiche les résultats pour le personnel
 
-        reseau_results = Reseau.objects.filter(
+        reseau_results = Reseau.objects.filter(     #champs du modele reseau
             Q(id__icontains=search_query) |
             Q(nom__icontains=search_query) |
             Q(adresse_ip__icontains=search_query) |
             Q(masque__icontains=search_query)
         )
-        results['Reseau'] = reseau_results
+        results['Reseau'] = reseau_results      #affiche les résultats pour les réseaux
 
-
-
-
-    return render(request, 'templates/html/recherche.html', {'form': form, 'results': results})
+    return render(request, 'templates/html/recherche.html', {'form': form, 'results': results})     #affiche tout les résultats

@@ -12,7 +12,7 @@
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>ID</th>
-                    <th>Machine associée</th>
+                    <th>Adresse Mail</th>
                     <th>Détails</th>
                 </tr>
             </thead>
@@ -22,7 +22,7 @@
                     <td></a>{{ personnel.nom }}</td>
                     <td>{{ personnel.prenom }}</td>
                     <td>{{ personnel.id }}</td>
-                    <td>{{ personnel.machine_assoc }}</td>
+                    <td>{{ personnel.mail }}</td>
                     <td><a href="{% url 'detail_personnel' personnel.id %}"><button class="btn btn-info">Accéder aux détails</button></a></td>
                 </tr>
                 {% endfor %}
