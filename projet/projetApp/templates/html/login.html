@@ -9,17 +9,25 @@
             <h1 class="card-title">Page de connexion</h1>
         </div>
         <div class="card-body">
+
             <form method="post">
                 {% csrf_token %}
                 <p class="card-text"> {{ form.as_p }} </p>
-                <button type="submit" class="btn btn-success">Se connecter</button>
-            </form>
-            <a href="{% url 'index' %}"><button class="btn btn-primary">Retour sur le site</button></a>
 
         </div>
-
+        <div class="card-footer">
+            <div class="libutton">
+                <button type="submit" class="btn btn-success">Se connecter</button>
+                </form>
+                <a href="{% url 'index' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+            </div>
+        </div>
     </div>
 
-
+<style>
+    main{
+        margin: 20px 35%;
+    }
+</style>
 
 {% endblock %}

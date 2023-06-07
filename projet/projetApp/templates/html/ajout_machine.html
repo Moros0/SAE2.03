@@ -4,34 +4,51 @@
 
 {%block content %}
     <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Créer une machine</h1>
+        </div>
+
         <div class="card-body">
-            <h1 class="card-title">Ajouter une machine</h1>
-            {% if request.user.is_superuser %}
+            <div class="card">
+                <div class="card-body">
+                    {% if request.user.is_superuser %}
 
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Créer</button>
-            </form>
-            <a href="{% url 'machine' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+                    <div class="alert alert-success">
+                        <strong>Attention !</strong> Vous êtes sur le point de créer une machine.
+                    </div>
 
-            <style>
-                main{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-            </style>
-        
-            {% else %}
-        
-            <p class="card-text">Vous devez être administrateur pour modifier ou supprimer les machines.</p>
-            <a href="{% url 'machine' %}"><button class="btn btn-primary">Retour sur le site</button></a>
-        
-            {% endif %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="li_button">
+                <button type="submit" class="btn btn-success">Créer</button>
+                </form>
+                <a href="{% url 'machine' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+            </div>
+        </div>
+
+                    {% else %}
+                
+                    <p class="card-text">Vous devez être administrateur pour modifier ou supprimer les machines.</p>
+                    <a href="{% url 'machine' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+                
+                    {% endif %}
         
         </div>
     </div>
+
+    <style>
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 
 {% endblock %}

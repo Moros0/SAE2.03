@@ -3,15 +3,29 @@
 {% extends "index.html" %}
 
 {% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Nom : {{ personnel.nom }}</h1>
+        </div>
 
-    <h1>Nom : {{ personnel.nom }}</h1>
-    <p><strong>Nom</strong> : {{ personnel.nom }}</p>
-    <p><strong>Prenom</strong> : {{ personnel.prenom }}</p>
-    <p><strong>Id</strong> : {{ personnel.id }}</p>
-    <p><strong>Adresse Mail</strong> : {{ personnel.mail }}</p>
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><strong>Nom : </strong>{{ personnel.nom }}</p>
+                    <p class="card-text"><strong>Prenom : </strong>{{ personnel.prenom }}</p>
+                    <p class="card-text"><strong>Id : </strong>{{ personnel.id }}</p>
+                    <p class="card-text"><strong>Adresse Mail : </strong>{{ personnel.mail }}</p>
+                </div>
+            </div>
+        </div>
 
-    <div class="li_button">
-        <a href="{% url 'modifier_personnel' personnel.id %}"><button class="button_modif">Modifier du Personel</button></a>
-        <a href="{% url 'supprimer_personnel' personnel.id %}"><button class="button_sup">Supprimer du Personel</button></a>
+
+        <div class="card-footer">
+            <div class="li_button">
+                <a href="{% url 'modifier_personnel' personnel.id %}"><button class="btn btn-warning">Modifier du Personel</button></a>
+                <a href="{% url 'supprimer_personnel' personnel.id %}"><button class="btn btn-danger">Supprimer du Personel</button></a>
+            </div>
+        </div>
     </div>
+
 {% endblock %}

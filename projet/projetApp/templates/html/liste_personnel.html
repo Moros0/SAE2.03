@@ -23,7 +23,7 @@
                     <td>{{ personnel.prenom }}</td>
                     <td>{{ personnel.id }}</td>
                     <td>{{ personnel.machine_assoc }}</td>
-                    <td><a href="{% url 'detail_personnel' personnel.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
+                    <td><a href="{% url 'detail_personnel' personnel.id %}"><button class="btn btn-info">Accéder aux détails</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -34,7 +34,7 @@
     {% endif %}
 
     <div class="li_button">
-        <a href="{% url 'ajout_personnel'%}"><button class="button_ajout">Ajouter du personnel</button></a>
+        <a href="{% url 'ajout_personnel'%}"><button class="btn btn-success">Ajouter du personnel</button></a>
     </div>
     
 {% endblock %}

@@ -46,7 +46,7 @@
                     <td>{{ machine.masque }}</td>
                     <td>{{ machine.maintenance_date }}</td>
                     <td>{{ machine.mach }}</td>
-                    <td><a href="{% url 'detail_machine' machine.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
+                    <td><a href="{% url 'detail_machine' machine.id %}"><button class="btn btn-info">Accéder aux détails</button></a></td>
                 </tr>
 
             {% endfor %}
@@ -58,7 +58,7 @@
     {% endif %}
 
     <div class="li_button">
-        <a href="{% url 'ajout_machine'%}"><button class="button_ajout">Ajouter une machine</button></a>
+        <a href="{% url 'ajout_machine'%}"><button class="btn btn-success">Ajouter une machine</button></a>
     </div>
 
 {% endblock %}

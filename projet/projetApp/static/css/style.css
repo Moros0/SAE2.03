@@ -84,35 +84,20 @@ table tr:hover {
 /* FIN */
 
 
-.button_detail{
-    border-radius: 4px;
-    color: rgb(37, 37, 252);
-    padding: 2px 20px;
+/* CSS pages details */
+
+.liste_details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 35%;
 }
 
+/* FIN */
 
-/* CSS boutton en bas de la page détail de machine et personnel */
 
-.button_modif{
-    background-color: rgb(78, 78, 255);
-    border: none;
-    border-radius: 30px;
-    padding: 20px;
-}
+/* CSS boutton */
 
-.button_sup{
-    background-color: #fc5a5a;
-    border: none;
-    border-radius: 30px;
-    padding: 20px;
-}
-
-.button_ajout{
-    background-color: #FFEE99;
-    border: none;
-    border-radius: 30px;
-    padding: 20px;
-}
 
 .li_button{
     display: flex;

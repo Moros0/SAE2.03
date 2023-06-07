@@ -3,18 +3,45 @@
 {%extends "index.html" %}
 
 {%block content %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Ajouter du personnel</h1>
+        </div>
 
-    {% if request.user.is_superuser %}
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    {% if request.user.is_superuser %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Créer</button>
-    </form>
+                    <div class="alert alert-success">
+                        <strong>Attention !</strong> Vous êtes sur le point d'ajouter du personnel.
+                    </div>
 
-    {% load static %}
-    <a href="{% url 'personnel' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px"></a>
-    <a href="{% url 'personnel' %}"><p>Retour sur le site.</p></a>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="li_button">
+                <button type="submit" class="btn btn-success">Créer</button>
+                </form>
+                <a href="{% url 'personnel' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+            </div>
+        </div>
+
+                    {% else %}
+                
+                    <p class="card-text">Vous devez être administrateur pour modifier ou supprimer du personnel.</p>
+                    <a href="{% url 'personnel' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+                
+                    {% endif %}
+        
+        </div>
+    </div>
+
     <style>
         main{
             display: flex;
@@ -23,14 +50,5 @@
             align-items: center;
         }
     </style>
-
-    {% else %}
-
-    <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>
-    {% load static %}
-    <a href="{% url 'personnel' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
-        <p>Retour sur le site.</p></a>
-
-    {% endif %}
 
 {% endblock %}

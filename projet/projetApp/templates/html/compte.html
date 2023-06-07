@@ -4,12 +4,22 @@
 
 {% block content %}
     <div class="card">
-        <div class="card-body">
+        <div class="card-header">
             <h1 class="card-title">Informations du compte</h1>
+        </div>
 
-            <p class="card-text">Nom d'utilisateur : {{ user.username }}</p>
-            <p class="card-text">Email : {{ user.email }}</p>
-            <p class="card-text">Groupe : {{ user.group }}</p>
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Nom d'utilisateur : {{ user.username }}</p>
+                    <p class="card-text">Email : {{ user.email }}</p>
+                    <p class="card-text">Groupe : {{ user.group }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            
         </div>
     </div>
 

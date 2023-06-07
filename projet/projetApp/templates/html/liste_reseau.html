@@ -31,7 +31,7 @@
                     <td>{{ reseau.nom }}</td>
                     <td>{{ reseau.adresse_ip }}</td>
                     <td>{{ reseau.masque }}</td>
-                    <td><a href="{% url 'detail_reseau' reseau.id %}"><button class="button_detail">Accéder aux détails</button></a></td>
+                    <td><a href="{% url 'detail_reseau' reseau.id %}"><button class="btn btn-info">Accéder aux détails</button></a></td>
                 </tr>
 
             {% endfor %}
@@ -43,7 +43,7 @@
     {% endif %}
 
     <div class="li_button">
-        <a href="{% url 'ajout_reseau'%}"><button class="button_ajout">Ajouter un réseau</button></a>
+        <a href="{% url 'ajout_reseau'%}"><button class="btn btn-success">Ajouter un réseau</button></a>
     </div>
 
 {% endblock %}

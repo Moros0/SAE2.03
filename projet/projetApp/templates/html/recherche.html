@@ -4,12 +4,65 @@
 
 {% block content %}
 
-<h1>Page de Recherche</h1>
+<div class="card w-100">
+    <div class="card-header">
+        <h1 class="card-title">Page de Recherche</h1>
+    </div>
 
-<form method="get" action="{% url 'recherche' %}">
-    {{ form.as_p }}
-    <button type="submit">Rechercher</button>
-</form>
+    <div class="text-center">
+        <form method="get" action="{% url 'recherche' %}">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Rechercher</button>
+        </form>
+    </div>
+
+    <div class="card-body">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-header">
+                    {% if results.Machine %}
+                        <h2>Résultats pour Machine</h2>
+                </div>
+                <div class="card-body">
+                        <ul>
+                            {% for machine_result in results.Machine %}
+                                <li>{{ machine_result }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    {% if results.Personnel %}
+                        <h2>Résultats pour Personnel</h2>
+                </div>
+                <div class="card-body">
+                        <ul>
+                            {% for personnel_result in results.Personnel %}
+                                <li>{{ personnel_result }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    {% if results.Reseau %}
+                        <h2>Résultats pour Reseau</h2>
+                </div>
+                <div class="card-body">
+                        <ul>
+                            {% for reseau_result in results.Reseau %}
+                                <li>{{ reseau_result }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
     main{
@@ -22,32 +75,4 @@
         padding: 20px;
     }
 </style>
-
-{% if results.Machine %}
-    <h2>Résultats pour Machine</h2>
-    <ul>
-        {% for machine_result in results.Machine %}
-            <li>{{ machine_result }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-{% if results.Personnel %}
-    <h2>Résultats pour Personnel</h2>
-    <ul>
-        {% for personnel_result in results.Personnel %}
-            <li>{{ personnel_result }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-{% if results.Reseau %}
-    <h2>Résultats pour Reseau</h2>
-    <ul>
-        {% for reseau_result in results.Reseau %}
-            <li>{{ reseau_result }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
 {% endblock %}

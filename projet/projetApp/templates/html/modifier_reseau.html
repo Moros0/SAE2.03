@@ -4,18 +4,45 @@
 
 {% block content %}
 
-    {% if request.user.is_superuser %}
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">Modification de réseaux</h1>
+    </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Modifier</button>
-        <button type="reset">Annuler</button>
-    </form>
+    <div class="card-body">
+        <div class="card">
+            <div class="card-body">
+                {% if request.user.is_superuser %}
 
-    {% load static %}
-    <a href="{% url 'reseau' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px"></a>
-    <a href="{% url 'reseau' %}"><p>Retour sur le site.</p></a>
+                <div class="alert alert-warning">
+                    <strong>Attention !</strong> Vous êtes sur le point de modifer un réseau.
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer text-center">
+
+        <div class="li_button">
+            <button type="submit" class="btn btn-warning">Modifier</button>
+            <a href="{% url 'reseau' %}"><button class="btn btn-primary">Annuler</button></a>
+        </div>
+
+                </form>
+
+    </div>
+
+    {% else %}
+
+    <p>Vous devez être administrateur pour modifier ou supprimer des réseaux.</p>
+    <a href="{% url 'reseau' %}"><button class="btn btn-primary">Retour sur le site</button></a>
+
+    {% endif %}
+
     <style>
         main{
             display: flex;
@@ -24,14 +51,5 @@
             align-items: center;
         }
     </style>
-
-    {% else %}
-
-    <p>Vous devez être administrateur pour modifier ou supprimer les Réseaux.</p>
-    {% load static %}
-    <a href="{% url 'reseau' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
-        <p>Retour sur le site.</p></a>
-
-    {% endif %}
 
 {% endblock %}
