@@ -62,9 +62,13 @@
     }
   </style>
 
-    <h1>Page d'Accueil</h1>
-    <p>Bienvenue ! Connectez-vous pour accéder à votre compte.</p>
-    <a href="{% url 'login' %}"><button class="connexion">Se connecter</button></a>
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title">Page d'Accueil</h1>
+      <p class="card-text">Bienvenue ! Connectez-vous pour accéder à votre compte.</p>
+      <a href="{% url 'login' %}"><button class="btn btn-success">Se connecter</button></a>
+    </div>
+  </div>
 
   {% endblock %}
   </main>

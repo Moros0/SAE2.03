@@ -4,12 +4,22 @@
 
 {% block content %}
 
-    <h1>Page de connexion</h1>
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="card-title">Page de connexion</h1>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <p class="card-text"> {{ form.as_p }} </p>
+                <button type="submit" class="btn btn-success">Se connecter</button>
+            </form>
+            <a href="{% url 'index' %}"><button class="btn btn-primary">Retour sur le site</button></a>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_table }}
-        <button type="submit">Se connecter</button>
-    </form>
+        </div>
+
+    </div>
+
+
 
 {% endblock %}

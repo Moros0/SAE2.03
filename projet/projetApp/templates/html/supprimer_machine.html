@@ -6,13 +6,18 @@
 
     {% if request.user.is_superuser %}
 
+    <div class="alert alert-danger">
+        <strong>Attention !</strong> Vous êtes sur le point de supprimer une machine.
+      </div>
+
     <p>Voulez-vous vraiment supprimer la machine ?</p>
     <form method="POST">
         {% csrf_token %}
-        <button type="submit">Oui, supprimer</button>
+        <button type="submit" class="btn btn-danger">Oui, supprimer</button>
     </form>
 
-    <a href="{% url 'machine' %}"><button>Non, retour</button></a>
+    <a href="{% url 'machine' %}"><button class="btn btn-primary">Non, retour</button></a>
+
 
     <style>
         main{
@@ -26,9 +31,7 @@
     {% else %}
 
     <p>Vous devez être administrateur pour modifier ou supprimer les machines.</p>
-    {% load static %}
-    <a href="{% url 'machine' %}"><img src="{% static 'images/retour.png' %}" height="50px" width="50px">
-        <p>Retour sur le site.</p></a>
+    <a href="{% url 'machine' %}"><button class="btn btn-primary">Retour sur le site</button></a>
 
     {% endif %}
 
